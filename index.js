@@ -5,9 +5,22 @@
  * @param {boolean} hasScroll - whether the wizard has a scroll of the spell
  * @returns {boolean} whether the wizard can cast the spell
  */
+var isSpellPrepared = true;
+var hasScroll = false;
 function canCastSpell(isSpellPrepared, hasScroll) {
-  // TODO
+  if (isSpellPrepared === true || hasScroll === true) {
+    // console.log(isSpellPrepared, hasScroll);
+    console.log("Can cast spell");
+    return true;
+  } else {
+    console.log("Doesn't have shit!");
+    return false;
+  }
 }
+
+// console.log(isSpellPrepared);
+// console.log(hasScroll);
+console.log(canCastSpell(isSpellPrepared, hasScroll));
 
 /**
  * A creature is hidden from an observer if it is actively hiding
@@ -16,9 +29,19 @@ function canCastSpell(isSpellPrepared, hasScroll) {
  * @param {boolean} aware - whether the observer is aware of the creature
  * @returns {boolean} whether the creature is hidden from the observer
  */
+var hiding = true;
+var aware = false;
 function isHidden(hiding, aware) {
-  // TODO
+  if (hiding === true || aware === false) {
+    return true;
+  } else {
+    return false;
+  }
 }
+
+// console.log(hiding);
+// console.log(aware);
+console.log(isHidden(hiding, aware));
 
 /**
  * A strike hits if the attack value is greater than or equal
@@ -27,9 +50,18 @@ function isHidden(hiding, aware) {
  * @param {number} ac - the armor class to beat
  * @returns {boolean} whether the strike hits
  */
+var attack = 15;
+var ac = 12;
 function doesStrikeHit(attack, ac) {
-  // TODO
+  if (attack >= ac) {
+    return true;
+  } else {
+    return false;
+  }
 }
+// console.log(attack);
+// console.log(ac);
+console.log(doesStrikeHit(attack, ac));
 
 /**
  * A strike is a critical hit if the attack value is at least
@@ -39,8 +71,15 @@ function doesStrikeHit(attack, ac) {
  * @returns {boolean} whether the strike is a critical hit
  */
 function doesStrikeCrit(attack, ac) {
-  // TODO
+  if (attack >= ac + 10) {
+    return true;
+  } else {
+    return false;
+  }
 }
+// console.log(attack);
+// console.log(ac);
+console.log(doesStrikeCrit(attack, ac));
 
 /**
  * A creature can restore hit points (HP) by healing,
@@ -50,8 +89,16 @@ function doesStrikeCrit(attack, ac) {
  * @param {number} healAmount - amount to heal
  * @returns {number} total hit points after healing
  */
+var maxHp = 100;
+var currentHp = 50;
+var healAmount = 30;
+console.log(heal(maxHp, currentHp, healAmount));
 function heal(maxHp, currentHp, healAmount) {
-  // TODO
+  if (currentHp + healAmount <= maxHp) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 /**
@@ -70,8 +117,23 @@ function heal(maxHp, currentHp, healAmount) {
  * @param {string} rank - character's proficiency rank
  * @returns {number} the character's proficiency bonus
  */
+var level = 5;
+var rank = "trained";
 function getProficiencyBonus(level, rank) {
-  // TODO
+  switch (rank) {
+    case "untrained":
+      return 0;
+    case "trained":
+      return level + 2;
+    case "expert":
+      return level + 4;
+    case "master":
+      return level + 6;
+    case "legendary":
+      return level + 8;
+    default:
+      throw new Error("Invalid rank");
+  }
 }
 
 /**
@@ -85,7 +147,8 @@ function getProficiencyBonus(level, rank) {
  * @returns {number} the cover bonus to AC
  */
 function getCoverBonus(behindObstacle, takingCover) {
-  // TODO
+  if (!behindObstacle) return 0;
+  return takingCover ? 4 : 2;
 }
 
 /**
